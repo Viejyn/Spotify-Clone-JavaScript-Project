@@ -13,13 +13,17 @@
 
 📱 Responsive Design: With a mobile compatible and stylish design, it can be used easily on any device.
 
-### 🧑‍💻 Technologies Used
+### 👩‍💻 Technologies Used
 
 <li>Html</li>
 <li>Scss</li>
 <li>JavaScript</li>
 <li>Shazam api</li>
 <li>Bootstrap icons</li>
+
+### 🌐 `Deploy`
+
+
 
 ### 🎥 `Screen`
 

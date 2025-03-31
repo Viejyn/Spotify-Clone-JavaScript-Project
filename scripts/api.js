@@ -1,13 +1,3 @@
-import CONFIG from "../../config.js";
-
-const options = {
-  method: 'GET',
-  headers: {
-    'x-rapidapi-key': CONFIG.RAPID_API_KEY,
-		'x-rapidapi-host': 'shazam.p.rapidapi.com'
-  },
-};
-
 // api'isteklerinin yönettiğimiz class
 export class API {
   // kurucu metod
@@ -18,8 +8,14 @@ export class API {
   async getPopular() {
     // api isteği at
     const res = await fetch(
-      `${CONFIG.RAPID_API_URL}/artists/get-top-songs?id=${CONFIG.RAPID_API_ID}&l=en-US`,
-      options
+      `${window.config.RAPID_API_URL}/artists/get-top-songs?id=${window.config.RAPID_API_ID}&l=en-US`,
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': window.config.RAPID_API_KEY,
+          'x-rapidapi-host': 'shazam.p.rapidapi.com',
+        },
+      }
     );
     
     // api'den gelen veriyi js nesnesine çevir
@@ -37,8 +33,14 @@ export class API {
     try {
       // api isteği at
       const res = await fetch(
-        `${CONFIG.RAPID_API_URL}/search?term=${query}`,
-        options
+        `${window.config.RAPID_API_URL}/search?term=${encodeURIComponent(query)}`,
+        {
+          method: 'GET',
+          headers: {
+          'x-rapidapi-key': window.config.RAPID_API_KEY,
+          'x-rapidapi-host': 'shazam.p.rapidapi.com',
+          },
+        }
       );
 
       // gelen veriyi js nesnesine çevir
@@ -55,7 +57,6 @@ export class API {
       // tracks.hits içindeki track nesnelerini al
       const formattedData = data.tracks.hits.map((hit) => {
         const track = hit.track;
-
         return {
           title: track.title || "Bilinmeyen Şarkı",
           artist: track.subtitle || "Bilinmeyen Sanatçı",
@@ -75,7 +76,6 @@ export class API {
       // gelen veriyi değişkene aktar
       this.songs = formattedData;
       return this.songs;
-
     } catch (error) {
       console.error("Şarkı ararken hata oluştu:", error);
       throw error;
