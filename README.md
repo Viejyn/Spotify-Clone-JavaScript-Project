@@ -23,7 +23,7 @@
 
 ### 🌐 `Deploy`
 
-
+https://spotify-clone-0325.netlify.app/
 
 ### 🎥 `Screen`
 
